@@ -11,6 +11,7 @@ Manages the end-to-end pipeline:
 
 import sys
 import os
+os.environ["HF_HOME"] = "D:/huggingface_cache"
 import pandas as pd
 
 # Add the project root to sys.path so we can import from agentic_pipeline

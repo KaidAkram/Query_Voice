@@ -5,6 +5,9 @@ Handles audio file processing using Hugging Face Whisper.
 """
 from transformers import pipeline
 import os
+os.environ["HF_HOME"] = "D:/huggingface_cache"
+import soundfile as sf
+import numpy as np
 
 
 class ASRService:
@@ -41,7 +44,12 @@ class ASRService:
             
         print(f"--- [ASR_SERVICE] Transcribing: {audio_path} ---")
         try:
-            result = self.model(audio_path)
+            # Load audio manually to bypass ffmpeg requirement
+            audio_data, samplerate = sf.read(audio_path)
+            if len(audio_data.shape) > 1:
+                audio_data = audio_data.mean(axis=1)
+                
+            result = self.model(audio_data)
             text = result.get("text", "").strip()
             print(f"--- [ASR_SERVICE] Transcription result: '{text}' ---")
             return text
