@@ -1,0 +1,3 @@
+# ChromaDB local persistence directory
+# This directory is mounted as a Docker volume for ChromaDB data.
+# Contents are excluded from version control.
