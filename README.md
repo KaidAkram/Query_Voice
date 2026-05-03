@@ -119,12 +119,18 @@ To allow your mobile device to talk to the AI server over Wi-Fi, the project use
 
 ---
 
-## 📊 Sample Visualization
-*Query: "Show me the top 5 countries by total profit in 2024"*
-> **Output**: A clean bar chart showing profit distribution across regions, generated entirely from a voice command.
+---
+
+## ✨ Try it out!
+
+Ready to see the magic? Launch the app and try asking:
+> **"Show me the users in Morocco"**
+
+Enjoy chatting with the engine! 🌍 🚀
+
+> [!TIP]
+> **Don't forget to watch your terminal!** You can see exactly how the data is moving through the "Brain" in real-time as you speak.
 
 ---
 
-## 👨‍💻 Author
-**Kaid Akram** - *AI Engineer / NLP Specialist*
-Building the future of Voice-Driven Analytics.
+**Built with ❤️ for the future of Voice-Driven Analytics.**
