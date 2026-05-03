@@ -1,5 +1,5 @@
 import 'dart:io';
-// import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
 
 /// ApiService — Handles all HTTP communication with the FastAPI backend.
 ///
@@ -11,10 +11,26 @@ class ApiService {
   // TODO: Move to environment config
   static const String baseUrl = 'http://localhost:8000/api/v1';
 
-  /// Sends a recorded audio file to the backend for processing.
   Future<Map<String, dynamic>> sendVoiceQuery(File audioFile) async {
-    // TODO: Implement multipart upload via Dio
-    throw UnimplementedError('sendVoiceQuery not yet implemented');
+    try {
+      final dio = Dio();
+      
+      String fileName = audioFile.path.split('/').last;
+      FormData formData = FormData.fromMap({
+        "audio": await MultipartFile.fromFile(audioFile.path, filename: fileName),
+      });
+
+      print("--- [API_SERVICE] Sending audio file to backend... ---");
+      Response response = await dio.post(
+        '$baseUrl/query/voice',
+        data: formData,
+      );
+      
+      return response.data;
+    } catch (e) {
+      print("--- [API_SERVICE] Error in sendVoiceQuery: $e ---");
+      throw Exception('Failed to send voice query: $e');
+    }
   }
 
   /// Sends a text-based natural language query to the backend.

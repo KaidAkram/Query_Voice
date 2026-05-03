@@ -7,8 +7,7 @@ Main application instance and API router registration.
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-# from app.api import query_router
-# from app.core.config import settings
+from app.api import query_router
 
 app = FastAPI(
     title="QueryVoice API",
@@ -38,5 +37,5 @@ async def health_check():
     return {"status": "healthy"}
 
 
-# TODO: Register routers
-# app.include_router(query_router.router, prefix="/api/v1")
+# Register routers
+app.include_router(query_router.router, prefix="/api/v1")
