@@ -1,80 +1,40 @@
-# ========================
 # Python
-# ========================
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-*.egg-info/
-dist/
-build/
-.eggs/
-*.egg
-.venv/
 venv/
+.venv/
 env/
 .env
-*.log
 
-# ========================
-# Jupyter Notebooks
-# ========================
-.ipynb_checkpoints/
+# Models & Data
+debug_audio/
+temp_audio/
+*.wav
+*.mp3
+*.sqlite3
+queryvoice_local.db
+offload_cache/
+huggingface_cache/
 
-# ========================
-# Flutter / Dart
-# ========================
-frontend_flutter/.dart_tool/
-frontend_flutter/.packages
-frontend_flutter/.pub-cache/
-frontend_flutter/.pub/
-frontend_flutter/build/
-frontend_flutter/.flutter-plugins
-frontend_flutter/.flutter-plugins-dependencies
-*.iml
-
-# ========================
-# IDE
-# ========================
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-.DS_Store
-Thumbs.db
-
-# ========================
-# Docker
-# ========================
-infrastructure/chromadb_data/*
-!infrastructure/chromadb_data/.gitkeep
-
-# ========================
-# ML / Data
-# ========================
-ml_experiments/data/*.json
-ml_experiments/data/*.csv
-ml_experiments/training/checkpoints/
-ml_experiments/training/runs/
+# Large Model Files
+# Exclude checkpoints but keep the final adapter if needed
+ml_experiments/*/checkpoint-*/
+ml_experiments/t5_sql_finetuned*/
 *.pt
 *.pth
 *.bin
-*.onnx
-wandb/
+*.safetensors
+!ml_experiments/v3_qlora_model/checkpoint-376/adapter_model.safetensors
 
-# ========================
-# Exclude non-production folders
-# ========================
-docs/
-ml_experiments/
-test/
-tests/
-*.test.py
+# IDEs
+.vscode/
+.idea/
 
-# ========================
-# Misc
-# ========================
-*.bak
-*.tmp
-.cache/
+# Flutter/Dart
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+*.lock
