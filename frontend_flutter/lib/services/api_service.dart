@@ -9,15 +9,16 @@ import 'package:dio/dio.dart';
 /// - GET  /api/v1/health       — Health check
 class ApiService {
   // TODO: Move to environment config
-  static const String baseUrl = 'http://localhost:8000/api/v1';
+  static const String baseUrl = 'http://10.208.58.5:8000/api/v1';
 
   Future<Map<String, dynamic>> sendVoiceQuery(File audioFile) async {
     try {
       final dio = Dio();
-      
+
       String fileName = audioFile.path.split('/').last;
       FormData formData = FormData.fromMap({
-        "audio": await MultipartFile.fromFile(audioFile.path, filename: fileName),
+        "audio":
+            await MultipartFile.fromFile(audioFile.path, filename: fileName),
       });
 
       print("--- [API_SERVICE] Sending audio file to backend... ---");
@@ -25,7 +26,7 @@ class ApiService {
         '$baseUrl/query/voice',
         data: formData,
       );
-      
+
       return response.data;
     } catch (e) {
       print("--- [API_SERVICE] Error in sendVoiceQuery: $e ---");
