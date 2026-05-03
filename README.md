@@ -4,6 +4,8 @@
 
 QueryVoice is a high-performance, agentic AI platform that transforms natural language voice commands into executable SQL queries. Designed for seamless Business Intelligence (BI), it enables non-technical users to query complex databases and receive instant visual insights through a sophisticated Neuro-Symbolic pipeline.
 
+![System Architecture](assets/architecture.png)
+
 ---
 
 ## 🧠 Theoretical Foundation
@@ -32,9 +34,16 @@ QueryVoice operates on the frontier of **Neuro-Symbolic AI**, bridging the gap b
 
 ---
 
+### 📈 Model Evaluation & Performance
+![Performance Comparison](assets/performance.png)
+
+---
+
 ## 🧬 The Pipeline: From Voice to Insight
 
 The QueryVoice engine utilizes a **LangGraph-driven agentic loop** to ensure 99% query accuracy:
+
+![Agentic Workflow](assets/workflow.png)
 
 ### 1. Voice-to-Intent (ASR & Rewriting)
 The process begins with the **Flutter** app capturing audio. This is processed by **Whisper**, converting speech to text. A custom **Rewriter Node** then cleans the transcript, correcting "speech artifacts" and normalizing terms for SQL generation.
@@ -44,6 +53,8 @@ A **Semantic Gatekeeper** analyzes the intent. If the query is out-of-scope (e.g
 
 ### 3. Hierarchical RAG & Chunking
 To handle complex schemas, we use a **Hierarchical Chunking Strategy**:
+
+![RAG Strategy](assets/rag_strategy.png)
 *   **Table-Level**: Descriptions of tables and their business purposes.
 *   **Column-Level**: Metadata for each field (Type, Description, Constraints).
 *   **Business Definitions**: Custom logic mappings (e.g., defining "Churn Rate" or "Active User" in SQL).
