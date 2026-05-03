@@ -74,33 +74,48 @@ Raw data results are converted back into a natural, human-readable summary using
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (Local Setup)
+
+To ensure maximum performance and GPU acceleration on Windows, we recommend running the project in a local Python virtual environment.
 
 ### 1. Environment Setup
-```bash
-# Clone and enter
+```powershell
+# Clone the repository
 git clone https://github.com/KaidAkram/Query_Voice.git
 cd Query_Voice
 
-# Start infrastructure (Postgres, ChromaDB)
-docker-compose -f infrastructure/docker-compose.yml up -d
-```
+# Create and activate a Virtual Environment
+python -m venv venv
+.\venv\Scripts\activate
 
-### 2. Ingest Data & Schema
-```bash
-# Initialize the Vector DB with Schema Metadata
-python data_engineering/init_vector_db.py
-
-# Run the ETL pipeline
-python data_engineering/run_etl.py
-```
-
-### 3. Launch the Backend
-```bash
-cd backend_fastapi
+# Install high-performance ML dependencies
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
-uvicorn app.main:app --reload
 ```
+
+### 2. Launching the Agentic Server
+The backend handles the ASR (Whisper) and the LLM (Qwen-7B) logic. 
+```powershell
+# From the project root
+.\venv\Scripts\python query_voice_root/agentic_pipeline/server.py
+```
+*Wait for the message: `--- SERVER READY ---`*
+
+### 3. Launching the Mobile App (Flutter)
+Ensure you have Flutter installed and an Android/iOS device connected.
+```powershell
+cd query_voice_root/frontend_flutter
+flutter pub get
+flutter run
+```
+
+---
+
+## 🌐 Mobile Connectivity & Networking
+To allow your mobile device to talk to the AI server over Wi-Fi, the project uses a **Local Network Bridge**:
+1.  Find your machine's IP address (run `ipconfig` in PowerShell).
+2.  The server automatically broadcasts on `0.0.0.0:8000`.
+3.  Ensure the `ApiService.dart` in the Flutter app points to your computer's IP (e.g., `http://10.208.58.5:8000/api/v1`).
 
 ---
 
